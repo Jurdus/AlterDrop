@@ -8,11 +8,6 @@
 
 - 📡 **Local network file sharing** — Hosts a lightweight web server so any device on the same Wi-Fi can upload or download files via a browser
 - 📷 **QR code** — Instantly displays a scannable QR code linking to the web interface, no typing required
-- 📁 **Custom download directory** — Choose exactly where received files are saved on your machine
-- 🔌 **Configurable port** — Default port is `5000`, adjustable to avoid conflicts with other services
-- 🔔 **Minimize to tray** — Stays quietly running in the background without cluttering your taskbar
-- 🌐 **Open Website** — Launch the web interface directly from the app
-- 📂 **Open Folder** — Jump straight to your upload/download directory with one click
 
 ---
 
@@ -51,16 +46,6 @@
 | **Reset** | Revert settings to their last saved state |
 | **Save** | Save the current settings |
 | **Apply** | Apply changes and restart the server |
-
----
-
-## Tray & Quick Actions
-
-| Button | Action |
-|---|---|
-| **Minimize to tray** | Hides the window; AlterDrop keeps running in the background |
-| **Open Website** | Opens the sharing interface in your default browser |
-| **Open folder** | Opens the configured download directory in Explorer |
 
 ---
 
