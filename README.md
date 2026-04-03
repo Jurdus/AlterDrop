@@ -20,7 +20,7 @@
 
 ### Installation
 
-1. Download the latest release from the [Releases](#) page
+1. Download the latest release from the [Releases](https://github.com/Jurdus/AlterDrop/releases/tag/Release) page
 2. Run the installer or extract the portable `.exe`
 3. Launch **AlterDrop**
 
