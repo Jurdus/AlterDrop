@@ -1,2 +1,76 @@
 # AlterDrop
-Windows app for sharing files on the network, built in QR code generator for link.
+
+**AlterDrop** is a lightweight Windows desktop application for sharing files over your local network — no internet required, no accounts, no hassle. Just launch the app, scan the QR code on any device, and start transferring files instantly.
+
+---
+
+## Features
+
+- 📡 **Local network file sharing** — Hosts a lightweight web server so any device on the same Wi-Fi can upload or download files via a browser
+- 📷 **QR code** — Instantly displays a scannable QR code linking to the web interface, no typing required
+- 📁 **Custom download directory** — Choose exactly where received files are saved on your machine
+- 🔌 **Configurable port** — Default port is `5000`, adjustable to avoid conflicts with other services
+- 🔔 **Minimize to tray** — Stays quietly running in the background without cluttering your taskbar
+- 🌐 **Open Website** — Launch the web interface directly from the app
+- 📂 **Open Folder** — Jump straight to your upload/download directory with one click
+
+---
+
+## Getting Started
+
+### Requirements
+
+- Windows 10 or later
+- Both devices must be on the **same local network (Wi-Fi or LAN)**
+
+### Installation
+
+1. Download the latest release from the [Releases](#) page
+2. Run the installer or extract the portable `.exe`
+3. Launch **AlterDrop**
+
+---
+
+## Usage
+
+1. **Launch AlterDrop** on your Windows PC
+2. *(Optional)* Click **Select download directory** to choose where received files will be saved
+3. *(Optional)* Change the **Port** if the default (`5000`) is in use, then click **Save** → **Apply**
+4. The app displays the local address (e.g. `http://192.168.1.x:5000`) and a **QR code**
+5. On your phone or another device, **scan the QR code** or manually enter the address in a browser
+6. Use the web interface to **send or receive files**
+
+---
+
+## Settings
+
+| Setting | Description |
+|---|---|
+| **Directory** | The local folder where uploaded files are saved |
+| **Port** | The port the web server listens on (default: `5000`) |
+| **Reset** | Revert settings to their last saved state |
+| **Save** | Save the current settings |
+| **Apply** | Apply changes and restart the server |
+
+---
+
+## Tray & Quick Actions
+
+| Button | Action |
+|---|---|
+| **Minimize to tray** | Hides the window; AlterDrop keeps running in the background |
+| **Open Website** | Opens the sharing interface in your default browser |
+| **Open folder** | Opens the configured download directory in Explorer |
+
+---
+
+## Troubleshooting
+
+**Can't connect from another device?**
+- Make sure both devices are on the **same Wi-Fi or LAN**
+- Check that your **Windows Firewall** allows AlterDrop or the configured port
+- Try a different port if `5000` is blocked
+
+**QR code not scanning?**
+- Ensure you haven't changed the port without clicking **Apply**
+- Confirm the IP shown (`http://192.168.x.x:PORT`) is reachable from the other device
