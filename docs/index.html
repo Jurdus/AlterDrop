@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlterDrop — File Sharing for Windows</title>
+  <meta name="description" content="AlterDrop is a lightweight Windows app for sharing files on your local network with built-in QR code generation." />
+
+  <!-- GOOGLE ADSENSE — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #000;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a { color: #000; }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── header ── */
+    header {
+      border-bottom: 1px solid #000;
+      padding: 16px 0;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .gh-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      text-decoration: none;
+      color: #555;
+    }
+    .gh-link:hover { color: #000; }
+
+    /* ── hero ── */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid #000;
+    }
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: #444;
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: #000; color: #fff; }
+    .btn-primary:hover { background: #222; }
+    .btn-ghost {
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+      margin-left: 8px;
+    }
+    .btn-ghost:hover { background: #f5f5f5; }
+
+    /* ── ad slot ── */
+    .ad-slot {
+      border: 1px dashed #ccc;
+      padding: 8px;
+      text-align: center;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 32px 0;
+    }
+    .ad-label { font-size: 11px; color: #bbb; letter-spacing: .08em; }
+
+    /* ── sections ── */
+    section { padding: 40px 0; border-bottom: 1px solid #ddd; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 24px;
+    }
+
+    /* ── stats ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid #000;
+    }
+    .stat {
+      padding: 20px 16px;
+      border-right: 1px solid #000;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 12px; color: #888; }
+    .sk { background: #eee; color: transparent; user-select: none; }
+
+    /* ── releases ── */
+    .releases { border: 1px solid #000; margin-top: 24px; }
+    .release-row {
+      display: grid;
+      grid-template-columns: 1fr 120px 90px 16px;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #ddd;
+      text-decoration: none;
+      color: #000;
+    }
+    .release-row:last-child { border-bottom: none; }
+    .release-row:hover { background: #f9f9f9; }
+    .release-tag { font-weight: 500; font-size: 13px; }
+    .release-name { font-size: 12px; color: #888; margin-top: 2px; }
+    .release-date { font-size: 12px; color: #888; }
+    .release-dl { font-size: 12px; font-weight: 500; text-align: right; }
+    .arrow { color: #ccc; font-size: 12px; text-align: right; }
+
+    /* ── features ── */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid #000;
+    }
+    .feat {
+      padding: 24px 20px;
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+    }
+    .feat:nth-child(2n) { border-right: none; }
+    .feat:nth-child(3), .feat:nth-child(4) { border-bottom: none; }
+    .feat-title { font-weight: 600; font-size: 13px; margin-bottom: 6px; }
+    .feat-desc { font-size: 13px; color: #555; line-height: 1.6; }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid #000;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #888;
+    }
+    footer a { color: #888; }
+    footer a:hover { color: #000; }
+
+    @media (max-width: 580px) {
+      .hero h1 { font-size: 28px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid #000; }
+      .release-row { grid-template-columns: 1fr auto; }
+      .release-date, .arrow { display: none; }
+      .features { grid-template-columns: 1fr; }
+      .feat { border-right: none; }
+      .feat:nth-child(3) { border-bottom: 1px solid #000; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <span class="logo">AlterDrop</span>
+    <a class="gh-link" href="https://github.com/Jurdus/AlterDrop" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.907-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Share files on your<br>local network.</h1>
+    <p>Windows app with a built-in QR code generator. No accounts, no cloud, no setup.</p>
+    <a id="dl-btn" class="btn btn-primary" href="https://github.com/Jurdus/AlterDrop/releases/latest" target="_blank">Download</a>
+    <a class="btn btn-ghost" href="https://github.com/Jurdus/AlterDrop" target="_blank" rel="noopener">Source code</a>
+  </div>
+
+  <!-- AD: Leaderboard -->
+  <div class="ad-slot">
+    <!--
+      ADSENSE LEADERBOARD (728×90) — uncomment after approval:
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="YOUR_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    <span class="ad-label">ADVERTISEMENT</span>
+  </div>
+
+  <section>
+    <div class="section-title">Downloads</div>
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat"><div class="stat-value sk">000</div><div class="stat-label">Total downloads</div></div>
+      <div class="stat"><div class="stat-value sk">00</div><div class="stat-label">Releases</div></div>
+      <div class="stat"><div class="stat-value sk">v0.0</div><div class="stat-label">Latest version</div></div>
+      <div class="stat"><div class="stat-value sk">000</div><div class="stat-label">Latest downloads</div></div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="section-title">Release history</div>
+      <div class="releases" id="releases-wrap">
+        <div style="padding:16px;color:#aaa;font-size:13px">Loading…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD: Rectangle -->
+  <div class="ad-slot" style="min-height:260px;">
+    <!--
+      ADSENSE RECTANGLE (300×250) — uncomment after approval:
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:300px;height:250px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="YOUR_SLOT_ID_2"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    <span class="ad-label">ADVERTISEMENT</span>
+  </div>
+
+  <section>
+    <div class="section-title">Features</div>
+    <div class="features">
+      <div class="feat">
+        <div class="feat-title">Local network sharing</div>
+        <div class="feat-desc">Share any file on your LAN. Works with any device that has a browser.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-title">QR code generator</div>
+        <div class="feat-desc">Generates a QR code for your share link automatically. Scan and download.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-title">Zero configuration</div>
+        <div class="feat-desc">No accounts, no cloud, no port forwarding. Just run and share.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-title">Native Windows app</div>
+        <div class="feat-desc">Lightweight tray application. Minimal footprint, always ready.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 <a href="https://github.com/Jurdus" target="_blank">Jurdus</a> · MIT License</span>
+    <a href="https://github.com/Jurdus/AlterDrop/issues" target="_blank">Report an issue</a>
+  </footer>
+
+</div>
+
+<script>
+  const REPO = 'Jurdus/AlterDrop';
+
+  async function load() {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/releases`);
+      if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+      const releases = await res.json();
+      if (!releases.length) throw new Error('No releases found');
+
+      let total = 0;
+      releases.forEach(r => (r.assets || []).forEach(a => total += a.download_count));
+
+      const latest = releases[0];
+      let latestDL = 0;
+      (latest.assets || []).forEach(a => latestDL += a.download_count);
+
+      document.getElementById('stats-grid').innerHTML = `
+        <div class="stat"><div class="stat-value">${total.toLocaleString()}</div><div class="stat-label">Total downloads</div></div>
+        <div class="stat"><div class="stat-value">${releases.length}</div><div class="stat-label">Releases</div></div>
+        <div class="stat"><div class="stat-value">${latest.tag_name}</div><div class="stat-label">Latest version</div></div>
+        <div class="stat"><div class="stat-value">${latestDL.toLocaleString()}</div><div class="stat-label">Latest downloads</div></div>
+      `;
+
+      const asset = (latest.assets || []).find(a => /\.(exe|msi|zip)$/.test(a.name));
+      if (asset) {
+        const btn = document.getElementById('dl-btn');
+        btn.href = asset.browser_download_url;
+        btn.textContent = `Download ${latest.tag_name}`;
+      }
+
+      document.getElementById('releases-wrap').innerHTML = releases.slice(0, 10).map(r => {
+        const dl = (r.assets || []).reduce((s, a) => s + a.download_count, 0);
+        const date = new Date(r.published_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const name = (r.assets || [])[0]?.name || 'source only';
+        return `
+          <a class="release-row" href="${r.html_url}" target="_blank" rel="noopener">
+            <div>
+              <div class="release-tag">${r.tag_name}${r.prerelease ? ' <span style="font-size:11px;color:#999;font-weight:400">pre</span>' : ''}</div>
+              <div class="release-name">${name}</div>
+            </div>
+            <div class="release-date">${date}</div>
+            <div class="release-dl">${dl.toLocaleString()} DL</div>
+            <div class="arrow">→</div>
+          </a>
+        `;
+      }).join('');
+
+    } catch (e) {
+      document.getElementById('stats-grid').innerHTML =
+        `<div class="stat" style="grid-column:1/-1;color:#999;font-size:13px">Could not load stats: ${e.message}</div>`;
+      document.getElementById('releases-wrap').innerHTML =
+        `<div style="padding:16px;font-size:13px;color:#999">${e.message} — <a href="https://github.com/${REPO}/releases">view on GitHub</a></div>`;
+    }
+  }
+
+  load();
+</script>
+
+</body>
+</html>
