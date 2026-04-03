@@ -8,6 +8,9 @@
 
 - 📡 **Local network file sharing** — Hosts a lightweight web server so any device on the same Wi-Fi can upload or download files via a browser
 - 📷 **QR code** — Instantly displays a scannable QR code linking to the web interface, no typing required
+<img width="277" height="548" alt="image" src="https://github.com/user-attachments/assets/788341c6-8e28-4169-8746-69064fd6fd1a" />
+<img width="308" height="548" alt="20260403_164857_946_IMG_8309" src="https://github.com/user-attachments/assets/acf4900e-d9d7-4034-9f21-0898e5b5a9d1" />
+
 
 ---
 
